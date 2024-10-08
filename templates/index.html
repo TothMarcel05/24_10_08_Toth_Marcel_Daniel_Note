@@ -58,5 +58,10 @@
         <button type="submit"> Közlés </button>
       </form>
 
+    {% if name %}
+        <h2>Bekülött adat</h2>
+        <p>{{ name }}</p>
+    {% endif %}
+
 </body>
 </html>
