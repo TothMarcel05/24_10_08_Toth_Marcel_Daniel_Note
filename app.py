@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 products = []
+users = []
 
 @app.route('/', methods=['GET'])
 def index():
@@ -17,6 +18,29 @@ def submit_products():
 @app.route('/products')
 def get_products():
     return render_template('products.html', products_=products)
+
+@app.route('/signup', methods=["POST", "GET"])
+def signup():
+    if request.method == "POST":
+        user_data = {
+            "fullname": request.form.get('fullname'),
+            "email": request.form.get('email'),
+            "password": request.form.get('password'),
+            "phone": request.form.get('phone'),
+            "gender": request.form.get('gender'),
+            "color": request.form.get('color'),
+            "profile_pic": request.form.get('profile_pic'),
+            "born-date": request.form.get('born-date'),
+            "actual-time": request.form.get('actual-time')
+            "interests": request.form.get('interests')}
+
+        users.append(user_data)
+        return redirect(url_for('admin'))
+    return render_template('signup_form.html')
+
+@app.route('/admin')
+def admin():
+    return render_template('admin.html', users=users)
 
 if __name__ == "__main__":
     app.run(debug=True)
