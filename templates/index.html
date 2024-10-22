@@ -52,18 +52,12 @@
 
     <h2>Adatok beküldése</h2>
 
-    <form action="/" method="POST">
-        <label for="name">Terméknév:</label><br>
+    <form action="/submit_products" method="POST">
+        <label for="name">Terméknév:</label>
         <input type="text" id="product_name" name="product_name"><br>
         <button type="submit"> Közlés </button>
       </form>
 
-    {% if products_ %}
-        <h2>Bekülött adat</h2>
-        {% for product in products_%}
-            {{ product }}
-            {% endfor %}
-    {% endif %}
-
+      <a href="/products">Bekülött Termékek</a>
 </body>
 </html>
